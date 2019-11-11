@@ -274,6 +274,37 @@ The Meeting.php model defines a relational ActiveQuery for this:
 
 ```
 
+Then, I can access a meeting's places with the `$meetingPlaces` property. Below, I load a meeting and iterate over all of its `meetingPlaces` quite easily as if it was a built-in array of sub-objects:
+
+
+```
+	$mtg = Meeting::find()->where(['id' => $meeting_id])->one();
+	foreach ($mtg->meetingPlaces as $mp) {
+		// ...
+	}
+
+```
+
+Of course, this relies on creating a foreign key when you create the table in its migration:
+
+```
+	if ($this->db->driverName === 'mysql') {
+		$tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+	}
+	$this->createTable('{{%meeting_place%}}', [
+		'id' => Schema::TYPE_PK,
+		'meeting_id' => Schema::TYPE_INTEGER . ' NOT NULL',
+		'place_id' => Schema::TYPE_INTEGER . ' NOT NULL',
+		'suggested_by' => Schema::TYPE_BIGINT . ' NOT NULL',
+		'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',
+		'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+		'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+	], $tableOptions);
+
+	$this->addForeignKey('fk_meeting_place_meeting',
+			'{{%meeting_place%}}', 'meeting_id', '{{%meeting}}',
+			'id', 'CASCADE', 'CASCADE');
+```
 
 
 
