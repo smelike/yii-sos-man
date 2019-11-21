@@ -100,7 +100,7 @@ An example of finding all records that match a specific `status` sorted by `$id`
 
 ```
 $people = Launch::find()
-	->where([''status' => Launch::STATUS_REQUEST])
+	->where(['status' => Launch::STATUS_REQUEST])
 	->orderBy('id')
 	->all();
 ```
