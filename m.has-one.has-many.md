@@ -1,4 +1,4 @@
-如何为 hasOne 方法的联查添加条件？
+[如何为 hasOne 方法的联查添加条件？](https://www.yiichina.com/tutorial/969)
 
 
 使用 hasOne 与 hasMany 来实现联查

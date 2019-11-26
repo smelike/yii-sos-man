@@ -120,7 +120,7 @@ Using `indexBy` returns an array of items indexed by their `id`:
 Return an associative array with `->asArray`:
 
 ```
-	$peopl = Launch::find->asArray()->all();
+	$people = Launch::find->asArray()->all();
 	
 ```
 
