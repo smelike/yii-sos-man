@@ -1,0 +1,1 @@
+yii migrate + 'Failed to instantiate component or class
